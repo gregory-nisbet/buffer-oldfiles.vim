@@ -1,4 +1,16 @@
-function! s:Oldfiles()
+" Version guard. Do nothing if vim is older than 7.3
+if v:version < '703'
+  function! s:Oldfiles()
+    echohl WarningMsg
+    echomsg "Buffer-Oldfiles requires vim 7.3+"
+    echohl None
+  endfunction
+  finish
+endif
+
+
+
+function! buffer_oldfiles#Oldfiles()
   " walk all the windows, any window that has the
   " buffer_oldfiles_scratch variable set in it is from
   " a previous call to s:Oldfiles and can be cleaned up
